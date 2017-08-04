@@ -41,7 +41,10 @@ class NovelFetchContent extends Command
     public function handle()
     {
         $this->comment("Fetching Comments Chapters");
-//        
+        
+        $time_start = microtime(true);
+        
+
         $query = Chapter::whereRaw('1 = 1');
 
         if (!$this->option('force')){
@@ -57,7 +60,13 @@ class NovelFetchContent extends Command
 //        }
 
         
-        dump(count($chapterChunks));
-
+        $count = count($chapterChunks);
+        
+        $time_end = microtime(true);
+        
+        $execution_time = ($time_end - $time_start)/60;
+        
+        $this->line("Fetched $count chapters in $execution_time minutes");
+        
     }
 }
