@@ -11,17 +11,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+
         // $this->call(UsersTableSeeder::class);
         $this->call(NovelTableSeeder::class);
 
-        $this->call(OverNovelSeeder::class);
+//        $this->call(ContinueNovelSeeder::class);
 
-        $this->call(ContinueNovelSeeder::class);
+//        $this->call(OverNovelSeeder::class);
+//
+//
+//        $this->call(RepairNovelSeeder::class);
+//
+//        $this->call(MingzhuNovelsInitSeeder::class);
 
-        $this->call(RepairNovelSeeder::class);
-
-        $this->call(MingzhuNovelsInitSeeder::class);
-
-        $this->call(CreateAdminSeeder::class);
+//        $this->call(CreateAdminSeeder::class);
     }
 }

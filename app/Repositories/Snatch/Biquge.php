@@ -213,8 +213,10 @@ Class Biquge extends Snatch implements SnatchInterface
                 }
                 $novel->save();
             }
+            dump($novel->toJson());
             return $novel;
         }
+        dump("NO INIT");
         return false;
     }
 

@@ -5,6 +5,58 @@ namespace App\Models;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Novel
+ *
+ * @property integer $id
+ * @property string $name
+ * @property string $description
+ * @property string $author_id
+ * @property string $type
+ * @property string $cover
+ * @property integer $hot
+ * @property integer $sort
+ * @property boolean $is_over
+ * @property string $source
+ * @property string $source_link
+ * @property integer $chapter_num
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
+ * @property-read \App\Models\Author $author
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Chapter[] $chapter
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $user
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereAuthorId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereType($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereCover($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereHot($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereSort($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereIsOver($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereSource($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereSourceLink($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereChapterNum($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel continued()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel over()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel top()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel hot()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel latest()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel weekHot()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel monthHot()
+ * @mixin \Eloquent
+ * @property string $temp_genre
+ * @property string $temp_author
+ * @property integer $max_chapter
+ * @property integer $chapter_page
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereTempGenre($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereTempAuthor($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereMaxChapter($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Novel whereChapterPage($value)
+ */
 class Novel extends Model
 {
     protected $table = 'novel';

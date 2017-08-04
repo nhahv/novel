@@ -2,6 +2,9 @@
 
 namespace App\Console;
 
+use App\Console\Commands\NovelFetchChapters;
+use App\Console\Commands\NovelFetchContent;
+use App\Console\Commands\NovelInfoUpdate;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -24,6 +27,9 @@ class Kernel extends ConsoleKernel
         Commands\SumOfChapters::class,
         Commands\CompareQidianNovel::class,
         Commands\SiteMonitor::class,
+        NovelInfoUpdate::class,
+        NovelFetchChapters::class,
+        NovelFetchContent::class,
     ];
 
     /**

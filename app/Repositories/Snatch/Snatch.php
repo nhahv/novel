@@ -25,7 +25,7 @@ class Snatch
      * @param string $encoding
      * @return mixed|string
      */
-    protected function send($url, $type = 'GET', $params = false, $encoding = 'gbk')
+    protected function send($url, $type = 'GET', $params = false, $encoding = 'utf-8')
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -39,11 +39,11 @@ class Snatch
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         if ($html === false) {
-            Log::error("链接: {$url}, curl失败，error: " . curl_errno($ch) . "请注意查看");
+            dump("链接: {$url}, curl失败，error: " . curl_errno($ch) . "请注意查看");
             return false;
         }
         if ($httpCode !== 200) {
-            Log::error("链接: {$url}, curl code不等于200，code: " . curl_errno($ch) . "请注意查看");
+            dump("链接: {$url}, curl code不等于200，code: " . curl_errno($ch) . "请注意查看");
             return false;
         }
         curl_close($ch);

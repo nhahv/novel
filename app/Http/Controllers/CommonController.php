@@ -16,14 +16,17 @@ class CommonController extends Controller
      */
     public function __construct()
     {
-        $HotNovels = Cache::remember('HotNovels', 60, function() {
+        $HotNovels    = Cache::remember('HotNovels', 0, function () {
             return Novel::with('author')->hot()->take(8)->get();
         });
-        $genres = Cache::rememberForever('genres', function() {
-            return category_maps();
-        });
+
+        $HotNovels = Novel::with('author')->hot()->take(8)->get();
+        $genres       =
+            Cache::remember('genres', 0, function () {
+                return category_maps();
+            });
         $this->genres = $genres;
-        view()->composer(['common.right', 'common.navbar'], function($view) use($HotNovels, $genres) {
+        view()->composer(['common.right', 'common.navbar'], function ($view) use ($HotNovels, $genres) {
             $view->with('HotNovels', $HotNovels)->with('genres', $genres);
         });
     }

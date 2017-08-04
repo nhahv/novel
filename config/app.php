@@ -172,6 +172,8 @@ return [
          * Snatch
          */
         App\Providers\SnatchServiceProvider::class,
+        
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*

@@ -25,7 +25,7 @@ class IndexController extends CommonController
     public function index()
     {
         $topNovels = Cache::remember('TopNovels', 60, function () {
-            return Novel::top()->take(8)->get();
+            return Novel::top()->take(16)->get();
         });
         $lastNovels = Novel::with('author')->latest()->take(15)->get();
         return view('index.index', compact('topNovels', 'lastNovels'));

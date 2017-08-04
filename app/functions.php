@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\Category;
+
 if (!function_exists('remote')) {
     function remote($url_array, $type = 'GET', $params = false, $encoding = 'gbk', $refer = '', $cookie = '')
     {
@@ -190,16 +193,15 @@ if (!function_exists('updateBatch')) {
 if (!function_exists('category_maps')) {
     function category_maps()
     {
-        return [
-            'xuanhuan' => '玄幻小说',
-            'xiuzhen' => '修真小说',
-            'dushi' => '都市小说',
-            'lishi' => '历史小说',
-            'wangyou' => '网游小说',
-            'kehuan' => '科幻小说',
-            'mingzhu' => '文学名著',
-            'other' => '其他'
-        ];
+        return Cache::remember('category_maps', 60, function(){
+            $cats = Category::get(['slug','name'])->toArray();
+            $map = [];
+            foreach ($cats as $cat) {
+                $map[$cat['slug']] = $cat['name'];
+            }
+            return $map;    
+        });
+        
     }
 }
 

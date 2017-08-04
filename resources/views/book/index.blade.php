@@ -2,13 +2,13 @@
 @section('title')
 {{ $novel->name }}-{{ $novel->name }}免费无弹窗-@if($novel->is_over){{ $novel->name }}全集-{{ $novel->name }}全文完整版 @else{{ $novel->name }}最新章节-{{ $novel->name }}最新章节列表@endif -书虫网 @stop
 @section('keywords'){{ $novel->name }},@if($novel->is_over){{ $novel->name }}全文完整版,@else{{ $novel->name }}最新章节,@endif{{ $novel->author->name }}@stop
-@section('description'){{ $novel->name }}@if($novel->is_over)已完成@else连载中@endif最新章节{{ $novel->chapter->last()->name }},作者{{ $novel->author->name }}的小说,{{ $novel->name }}全文免费阅读到书虫网(www.shu000.com)@stop
+{{--@wsection('description'){{ $novel->name }}@if($novel->is_over)已完成@else连载中@endif最新章节{{ $novel->chapter->last()->name }},作者{{ $novel->author->name }}的小说,{{ $novel->name }}全文免费阅读到书虫网(www.shu000.com)@stop--}}
 @section('meta')
 <meta property="og:type" content="novel"/>
     <meta property="og:title" content="{{ $novel->name }}"/>
     <meta property="og:description" content="{{ preg_replace('/\s+/', '', strip_tags($novel->description)) }}"/>
-    <meta property="og:image" content="{{ config('app.url') . $novel->cover }}"/>
-    <meta property="og:novel:category" content="{{ category_maps()[$novel->type] }}"/>
+{{--    <meta property="og:image" content="{{ config('app.url') . $novel->cover }}"/>--}}
+{{--    <meta property="og:novel:category" content="{{ category_maps()[$novel->type] }}"/>--}}
     <meta property="og:novel:author" content="{{ $novel->author->name }}"/>
     <meta property="og:novel:book_name" content="{{ $novel->name }}"/>
     <meta property="og:novel:read_url" content="{{ route('book', ['bookId' => $novel->id]) }}"/>
@@ -16,8 +16,8 @@
     <meta property="og:novel:status" content="{{ $novel->is_over ? '已完成' : '连载中' }}"/>
     <meta property="og:novel:author_link" content="{{ route('author', ['authorId' => $novel->author_id]) }}"/>
     <meta property="og:novel:update_time" content="{{ $novel->updated_at }}"/>
-    <meta property="og:novel:latest_chapter_name" content="{{ $novel->chapter->last()->name }}"/>
-    <meta property="og:novel:latest_chapter_url" content="{{ route('chapter', ['bookId' => $novel->id, 'chapterId' => $novel->chapter->last()->id]) }}"/>
+{{--    <meta property="og:novel:latest_chapter_name" content="{{ $novel->chapter->last()->name }}"/>--}}
+{{--    <meta property="og:novel:latest_chapter_url" content="{{ route('chapter', ['bookId' => $novel->id, 'chapterId' => $novel->chapter->last()->id]) }}"/>--}}
     <meta property="og:novel:author_other_books" content="{{ $otherBooks }}"/>
 @stop
 @section('content')
@@ -58,8 +58,8 @@
                 </div>
                 <div class="detail-story">
                     <div class="d-s-col">
-                        <p>作者: <a href="{{ route('author', ['authorId' => $novel->author->id ]) }}" title="{{ $novel->author->name }}">{{ $novel->author->name }}</a></p>
-                        <p>分类: <a href="{{ route('category', ['category' => $novel->type])  }}" title="{{ $novel->type }}">{{ $genres[$novel->type] }}</a>
+{{--                        <p>作者: <a href="{{ route('author', ['authorId' => $novel->author->id ]) }}" title="{{ $novel->author->name }}">{{ $novel->author->name }}</a></p>--}}
+{{--                        <p>分类: <a href="{{ route('category', ['category' => $novel->type])  }}" title="{{ $novel->type }}">{{ $genres[$novel->type] }}</a>--}}
                         </p>
                         <p>热度: {{ $novel->hot }}</p>
                     </div>

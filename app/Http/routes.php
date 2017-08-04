@@ -59,7 +59,8 @@ Route::group(['middleware'=>['web', 'wechat']], function(){
     Route::get('search', ['as' => 'search', 'uses' => 'IndexController@search']);
 
     Route::get('{category}', ['as' => 'category', 'uses'=>'IndexController@category'])
-        ->where('category', '(xuanhuan|xiuzhen|dushi|lishi|wangyou|kehuan|mingzhu|other)');
+//        ->where('category', '(xuanhuan|xiuzhen|dushi|lishi|wangyou|kehuan|mingzhu|other)');
+;
 
     Route::get('feedback', ['as' => 'feedback', 'uses' => 'IndexController@feedback']);
     Route::post('feedback', 'IndexController@postFeedback');

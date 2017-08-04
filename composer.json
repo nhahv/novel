@@ -17,7 +17,8 @@
         "barryvdh/laravel-debugbar": "^2.2",
         "predis/predis": "~1.0",
         "watson/sitemap": "2.0.*",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
