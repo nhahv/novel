@@ -42,21 +42,21 @@ class IndexController extends CommonController
     public function newRelease()
     {
         $novels = Novel::with('author')->latest()->paginate(30);
-        $name = '最新发布';
+        $name = 'Mới cập nhật';
         return view('index.list', compact('novels', 'name'));
     }
 
     public function top()
     {
         $novels = Novel::with('author')->hot()->paginate(30);
-        $name = '排行榜单';
+        $name = 'Truyện hot';
         return view('index.list', compact('novels', 'name'));
     }
 
     public function over()
     {
         $novels = Novel::with('author')->over()->hot()->paginate(30);
-        $name = '完结小说';
+        $name = 'Truyện full';
         return view('index.list', compact('novels', 'name'));
     }
 
@@ -66,7 +66,7 @@ class IndexController extends CommonController
         $authors = Author::where('name', 'like', '%' . $keywords . '%')->pluck('id')->toArray();
         $novels = Novel::where('name', 'like', '%' . $keywords . '%')
             ->orwhereIn('author_id', $authors)->hot()->paginate(30);
-        $name = "关键词：" . $keywords;
+        $name = "Tìm kiếm：" . $keywords;
         return view('index.list', compact('name', 'novels'));
     }
 

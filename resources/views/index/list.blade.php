@@ -1,6 +1,6 @@
 @extends('app')
-@section('title'){{ $name }}-书虫网@stop
-@section('keywords'){{ $name }},书虫网{{ $name }}@stop
+@section('title'){{ $name }} - Danh sách tìm kiếm @stop
+@section('keywords'){{ $name }}, Danh sách tìm kiếm{{ $name }}@stop
 @section('content')
     <div id="left">
         <h1 class="title">{{ $name }}</h1>
@@ -8,18 +8,23 @@
         <div class="l-category box">
             <ul class="content">
                 @foreach($novels as $novel)
-                    <li>
-                        <a class="c-title" href="{{ route('book', ['bookId' => $novel->id]) }}"
-                           title="{{ $novel->name }}">{{ $novel->name }}</a>
-                        <a class="tag tag-novel-type"
-                           href="{{ route('category', ['category' => $novel->type]) }}">#{{ category_maps()[$novel->type] }}</a>
-                        <a class="tag tag-novel-status"
-                           href="{{ $novel->is_over ? route('over') : 'javascript:void(0)' }}">#{{ $novel->is_over ? '完结' : '连载中' }}</a>
-                        @if($novel->author)
-                            <a href="{{ route('author', ['authorId' => $novel->author_id]) }}"
-                               title="{{ $novel->author->name }}" class="cate-li-right">{{ $novel->author->name }}</a>
-                        @endif
-                    </li>
+                    @if(isset(category_maps()[$novel->type]))
+                        <li>
+                            <a class="c-title" href="{{ route('book', ['bookId' => $novel->id]) }}"
+                               title="{{ $novel->name }}">{{ $novel->name }}</a>
+                            <a class="tag tag-novel-type"
+                               href="{{ route('category', ['category' => $novel->type]) }}">{{ category_maps()[$novel->type] }}</a>
+                            @if($novel->is_over)
+                                <a class="tag tag-novel-status"
+                                   href="{{ $novel->is_over ? route('over') : 'javascript:void(0)' }}">{{ $novel->is_over ? 'Full' : '' }}</a>
+                            @endif
+                            @if($novel->author)
+                                <a href="{{ route('author', ['authorId' => $novel->author_id]) }}"
+                                   title="{{ $novel->author->name }}"
+                                   class="cate-li-right">{{ $novel->author->name }}</a>
+                            @endif
+                        </li>
+                    @endif
                 @endforeach
             </ul>
             <div class="pagination">

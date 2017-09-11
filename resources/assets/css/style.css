@@ -137,6 +137,11 @@ h5 {
 .sprites {
     background-image: url("../images/sprites.png");
 }
+
+.italic{
+    font-style: italic;
+}
+
 .icons16 {
     display: inline-block;
     height: 16px;
@@ -159,6 +164,7 @@ h5 {
     padding: 10px;
     position: relative;
     line-height: 1.8;
+    font-family: "Noto Serif", serif;
 }
 .detail-box .content .contents-comic p,.box .content .contents-comic p{
     padding: 10px;
@@ -369,7 +375,7 @@ h5 {
     left: 0;
     position: absolute;
     top: 10px;
-    width: 190px;
+    width: 270px;
 }
 #header #logo h1 {
     color: #444444;
@@ -386,7 +392,7 @@ h5 {
     position: relative;
 }
 #header #search {
-    left: 210px;
+    left: 280px;
     position: absolute;
     top: 15px;
 }

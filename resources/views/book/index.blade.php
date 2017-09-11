@@ -61,35 +61,35 @@
 {{--                        <p>作者: <a href="{{ route('author', ['authorId' => $novel->author->id ]) }}" title="{{ $novel->author->name }}">{{ $novel->author->name }}</a></p>--}}
 {{--                        <p>分类: <a href="{{ route('category', ['category' => $novel->type])  }}" title="{{ $novel->type }}">{{ $genres[$novel->type] }}</a>--}}
                         </p>
-                        <p>热度: {{ $novel->hot }}</p>
+                        <p>Xếp hạng: {{ $novel->hot }}</p>
                     </div>
                     <div class="d-s-col d-s-col-noright">
-                        <p>最新章节: <a id="readNew" href="" title=""></a></p>
-                        <p>更新时间: {{ $novel->updated_at }}</p>
-                        <p>上次看到: <a id="readLast" href="" title=""></a></p>
+                        <p>Chương mới nhất: <a id="readNew" href="" title=""></a></p>
+                        <p>Cập nhật: {{ $novel->updated_at }}</p>
+                        <p>Lần xem cuối: <a id="readLast" href="" title=""></a></p>
                     </div>
                     <div class="clr"></div>
-                    <a id="readStart" href="" rel="nofollow" class="btn-big">开始阅读</a>
+                    <a id="readStart" href="" rel="nofollow" class="btn-big">Đọc truyện</a>
                     @if(isset($user))
                     <a href="javascript:void(0);" rel="nofollow" class="btn-big subscribe">
                         @if(in_array($novel->id, $user->novel->pluck('id')->all()))
-                            取消订阅
+                            Subscribe
                         @else
-                            订阅
+                            Unsubscribe
                         @endif
                     </a>
                     @endif
                 </div>
                 <div class="clr"></div>
                 <div class="desc-story" style="padding-top:10px;">
-                    <strong>简介:</strong>
+                    <strong>Mô tả:</strong>
                     {!! $novel->description !!}
                 </div>
             </div>
         </div>
         <!--/ thong tin truyen -->
         <!-- chap -->
-        <h2 class="title mt10">章节列表 <a style="float: right;" href="javascript:revert();">倒序</a>:</h2>
+        <h2 class="title mt10">Danh sách chương <a style="float: right;" href="javascript:revert();">Đảo chương</a>:</h2>
         <div class="box search-chap">
             <div class="content">
                 <div class="list-chap-wrap">
@@ -128,11 +128,11 @@
                 dataType: 'json',
                 success: function(data) {
                     if(data.isSubscribe==0){
-                        alert('取消成功');
-                        $('.subscribe').html('订阅');
+                        alert('Đã huỷ đăng ký');
+                        $('.subscribe').html('Subscribe');
                     } else {
-                        alert('订阅成功');
-                        $('.subscribe').html('取消订阅');
+                        alert('Đăng ký thành công');
+                        $('.subscribe').html('Unsubscribe');
                     }
                 }
             })
@@ -162,7 +162,7 @@
             next_href = $firstLi.find('a').attr('href'),
             next_title = $firstLi.find('a').attr('title');
         $readNew.attr('href', new_href).attr('title', new_title).html(new_title);
-        $readStart.attr('href', next_href).attr('title', next_title).html('开始阅读');
+        $readStart.attr('href', next_href).attr('title', next_title).html('Đọc truyện');
         if(chapterHistory){
             var last_title = chapterHistory['title'],
                     last_href = chapterHistory['href'],
@@ -172,7 +172,7 @@
             next_href = $next.find('a').attr('href');
             next_title = $next.find('a').attr('title');
             if(next_href && next_title) {
-                $readStart.attr('href', next_href).attr('title', next_title).html('继续阅读');
+                $readStart.attr('href', next_href).attr('title', next_title).html('Đọc tiếp');
             }
         }
     });

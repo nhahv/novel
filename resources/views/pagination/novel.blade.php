@@ -5,7 +5,7 @@ $link_limit = 7; // maximum number of links (a little bit inaccurate, but will b
 
 @if ($paginator->lastPage() > 1)
     <ul class="pg-ul">
-        <li>分页 »</li>
+        <li>Trang: </li>
         @if($paginator->currentPage() > 1)
             <li>
                 <a href="{{ $paginator->url($paginator->currentPage()-1) }}"><</a>

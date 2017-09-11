@@ -1,8 +1,8 @@
 @extends('app')
 @section('pagetype'){{"detail"}}@stop
-@section('title'){{ $chapter->name }}-{{ $chapter->novel->name }}-书虫网@stop
-@section('keywords'){{ $chapter->name }},@if($chapter->novel->is_over){{ $chapter->novel->name }}全文完整版,@else{{ $chapter->novel->name }}最新章节,@endif{{ $chapter->novel->name }}无弹窗,书虫网@stop
-@section('description')小说{{ $chapter->novel->name }}正文 {{ $chapter->name }}在线阅读。作者{{ $chapter->novel->author->name }}的小说,{{ $chapter->novel->name }}全文免费阅读到书虫网(www.shu000.com)@stop
+@section('title'){{ $chapter->name }}-{{ $chapter->novel->name }} - {{ config('meta.site_name') }}@stop
+@section('keywords'){{ $chapter->name }},@if($chapter->novel->is_over){{ $chapter->novel->name }}Full,@else{{ $chapter->novel->name }}Mói nhất,@endif{{ $chapter->novel->name }}, {{ config('meta.site_keywords')  }}@stop
+@section('description')Đọc truyện {{ $chapter->novel->name }} chương {{ $chapter->name }} online。tác giả {{ $chapter->novel->author->name }},{{ $chapter->novel->name }} - {{ config('meta.site_description') }}@stop
 @section('link')<link rel="canonical" href="{{ route('chapter', ['bookId'=> $chapter->novel->id, 'chapterId' => $chapter->id]) }}" />@stop
 @section('js')
 <script>
@@ -15,7 +15,9 @@
     function ad_filter(content) {
         return content.replace(/<script[^>]*?>.*?<\/script>/, '')
                     .replace(/公告：笔趣阁APP上线了，支持安卓，苹果。请关注微信公众号进入下载安装 appxsyd \(按住三秒复制\)/, '')
-                    .replace(/公告：本站推荐一款免费小说APP，告别一切广告。请关注微信公众号进入下载安装 appxsyd \(按住三秒复制\)/, '');
+                    .replace(/公告：本站推荐一款免费小说APP，告别一切广告。请关注微信公众号进入下载安装 appxsyd \(按住三秒复制\)/, '')
+                    .replace(/<img[^>]*?>.*?>/, '<div class="italic">Nguồn truyện bị lỗi</div>')
+            ;
     }
     $(function () {
         var chapterHistory = {
@@ -53,9 +55,23 @@
         <h1 class="title"><a href="{{ route('book', ['bookId' => $chapter->novel_id]) }}" title="{{ $chapter->novel->name }}">{{ $chapter->novel->name }}</a> / {{ $chapter->name }}</h1>
         <input type="hidden" name="urlchange" value="{{ route('book', ['bookId' => $chapter->novel_id]) }}">
         <div class="tool-right">
-            <a href="javascript:setbookmark();" title="Bookmark" class="btn">保存书签</a>
+            <a href="javascript:setbookmark();" title="Bookmark" class="btn">Bookmark</a>
         </div>
     </div>
+    <!--/ thong tin truyen -->
+    <div class="clearfix">
+        <div class="flr chap-select-dropdown">
+            @if(isset($next))
+                <a href="{{ route('chapter', ['bookId' => $chapter->novel_id, 'chapterId' => $next->id]) }}" class="btn-blue next-page">Chương trước</a>
+            @endif
+            <a href="{{ route('book', ['bookId' => $chapter->novel_id]) }}" class="btn-blue">Danh sách</a>
+            @if(isset($prev))
+                <a href="{{ route('chapter', ['bookId' => $chapter->novel_id, 'chapterId' => $prev->id]) }}" class="btn-blue prev-page">Chướng tiếp</a>
+            @endif
+        </div>
+    </div>
+    <div style="margin-bottom: 1em"></div>
+    
     <div class="detail-box">
         <div class="content" data-page="{{ $chapter->id }}">
             <h2 class="chapter-number">{{ $chapter->name }}</h2>
@@ -63,7 +79,9 @@
             <div class="contents-comic">
                 {!!  $chapter->content !!}
                 <br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;精彩小说就在书虫网(www.shu000.com)
+                <p class="pull-right italic text-muted">
+                    {{ config('meta.content_description') }}
+                </p>
             </div>
         </div>
     </div>
@@ -71,12 +89,12 @@
     <!--/ thong tin truyen -->
     <div class="clearfix">
         <div class="flr chap-select-dropdown">
-            @if(isset($prev))
-            <a href="{{ route('chapter', ['bookId' => $chapter->novel_id, 'chapterId' => $prev->id]) }}" class="btn-blue prev-page">上一章</a>
-            @endif
-            <a href="{{ route('book', ['bookId' => $chapter->novel_id]) }}" class="btn-blue">目录</a>
             @if(isset($next))
-            <a href="{{ route('chapter', ['bookId' => $chapter->novel_id, 'chapterId' => $next->id]) }}" class="btn-blue next-page">下一章</a>
+                <a href="{{ route('chapter', ['bookId' => $chapter->novel_id, 'chapterId' => $next->id]) }}" class="btn-blue next-page">Chương trước</a>
+            @endif
+            <a href="{{ route('book', ['bookId' => $chapter->novel_id]) }}" class="btn-blue">Danh sách</a>
+            @if(isset($prev))
+                <a href="{{ route('chapter', ['bookId' => $chapter->novel_id, 'chapterId' => $prev->id]) }}" class="btn-blue prev-page">Chướng tiếp</a>
             @endif
         </div>
     </div>
